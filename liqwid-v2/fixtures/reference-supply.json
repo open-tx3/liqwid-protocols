@@ -1,0 +1,44 @@
+{
+  "tx_hash": "ab019024c7f21eb4a9789458eb76b1c6fe79215070acb8d7157339b86d78feb1",
+  "network": "preview",
+  "source": {
+    "builder": "https://v2.api.preview.liqwid.dev/graphql",
+    "query": "liqwid.transactions.supply",
+    "input": {
+      "marketId": "Ada",
+      "amount": 100000000,
+      "address": "addr_test1qq4wzrda3rpszr9s8gelyufs368ke45xk7c6nfk54rc66qxejl3lnzgadpq8arwkxmeg4wkncfpv09uhs8lqc8ugjl3qrmvklh",
+      "changeAddress": "addr_test1qq4wzrda3rpszr9s8gelyufs368ke45xk7c6nfk54rc66qxejl3lnzgadpq8arwkxmeg4wkncfpv09uhs8lqc8ugjl3qrmvklh",
+      "otherAddresses": [
+        "addr_test1qq4wzrda3rpszr9s8gelyufs368ke45xk7c6nfk54rc66qxejl3lnzgadpq8arwkxmeg4wkncfpv09uhs8lqc8ugjl3qrmvklh"
+      ],
+      "utxos": [
+        "701cf5b5c2c7de6e8207593187e9fb3c73ddfb45840d3678c1b9df9232def1ec#3 (as TransactionUnspentOutput CBOR)"
+      ]
+    },
+    "note": "Unsigned; never signed or submitted."
+  },
+  "preview_evaluation": {
+    "ok": true,
+    "budgets": [
+      {
+        "purpose": "spend",
+        "index": 0,
+        "memory": 895326,
+        "cpu": 313218392
+      },
+      {
+        "purpose": "mint",
+        "index": 0,
+        "memory": 1740437,
+        "cpu": 544638750
+      }
+    ]
+  },
+  "expected": {
+    "supplier_pkh": "2ae10dbd88c3010cb03a33f271308e8f6cd686b7b1a9a6d4a8f1ad00",
+    "supply_lovelace": 100000000,
+    "qada_minted": 4305236194
+  },
+  "tx_cbor": "84ab00d901028282582067c414132e10bf29d93232cfd2c8038e9e2367ef46b2f66ec359f340301db28403825820701cf5b5c2c7de6e8207593187e9fb3c73ddfb45840d3678c1b9df9232def1ec030182a300583910da3d53de5778fabdb845dafe55c5ff50468ec75df5b8bf25c7733747ab191e6a487e7c08fc529c7cde69778a224394276e0cd830c8c5805d01821b0000009823022d09a1581caf829f4472c3728307007831fa000e450883cfca4893d9ef535e8786a14001028201d818581882851a05f5e1001b00000001009cb0e20000001a2461facf825839002ae10dbd88c3010cb03a33f271308e8f6cd686b7b1a9a6d4a8f1ad00d997e3f9891d68407e8dd636f28abad3c242c7979781fe0c1f8897e2821a8d663c98a1581c50e015ec8204db83a4f57aa9ee40ce6ea157e3b7335a149fafe3f370a1401b00000001009cb0e2021a0009284f031a07aed18a09a1581c50e015ec8204db83a4f57aa9ee40ce6ea157e3b7335a149fafe3f370a1401b00000001009cb0e20b58208a8f9a37e0d5e9a256f6b404dbd31733aa339ad9a867747812e32ea21a91b0f20dd9010281825820701cf5b5c2c7de6e8207593187e9fb3c73ddfb45840d3678c1b9df9232def1ec030ed9010281581c2ae10dbd88c3010cb03a33f271308e8f6cd686b7b1a9a6d4a8f1ad0010825839002ae10dbd88c3010cb03a33f271308e8f6cd686b7b1a9a6d4a8f1ad00d997e3f9891d68407e8dd636f28abad3c242c7979781fe0c1f8897e21a9318faa7111a004c4b4012d9010284825820dbb5d1c10ed2cd5a5105c1f50ce30dbdac7707060e3eb1be7034cdbce623ccc20082582004dd9fbaa2305b1309843542821c580c724b4bec518d6d6280ec9ac6cdc6f0c90082582067c414132e10bf29d93232cfd2c8038e9e2367ef46b2f66ec359f340301db28401825820344b090d588a045d4e903c6cafe3d6e18bc349faac5f07b442cc63db0c81702c00a10582840000d87980821a000da95e1a12ab5558840100d87980821a001a8e951a2076871ef5f6"
+}

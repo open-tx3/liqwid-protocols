@@ -1,0 +1,81 @@
+{
+  "network": "preview",
+  "captured": "2026-11-24, preview tip slot 128896994 (block 4890236); last batch 2026-11-24T14:53:46Z",
+  "historical": {
+    "comment": "Reproducible: the UTxOs both transactions spend or reference, as they stood when the builder answered. A batch spends the action and market state UTxOs, so these refs go stale.",
+    "action": {
+      "role": "ADA market action UTxO spent by the supply",
+      "ref": "67c414132e10bf29d93232cfd2c8038e9e2367ef46b2f66ec359f340301db284#3",
+      "address": "addr_test1zrdr65772au040dcghd0u4w9lagydrk8th6m30e9caenw3atry0x5jr70sy0c55u0n0xjau2yfpegfmwpnvrpjx9spwsrt7c6x",
+      "lovelace": 653322374153,
+      "assets": {
+        "af829f4472c3728307007831fa000e450883cfca4893d9ef535e8786.": 1
+      },
+      "created_in_block": 4889425,
+      "datum_cbor": "828500000000001a2461facf"
+    },
+    "market_state": {
+      "role": "ADA market state UTxO (reference input; field 9 is the exchange pair)",
+      "ref": "67c414132e10bf29d93232cfd2c8038e9e2367ef46b2f66ec359f340301db284#1",
+      "address": "addr_test1wrdk050fs7r9537m9wxfnqzmjsxnmud5v8le6vjh6k5jhvchuyj76",
+      "lovelace": 3000000,
+      "assets": {
+        "b9a05feafb9a147460f8c9e6f63de66d5f3d151ddcd93d0132e90fb6.": 1
+      },
+      "created_in_block": 4889425,
+      "datum_cbor": "8b1b0000025fe2a944e81a9187eb3e1b0000b12a6b1061711b00000198b2c9bd991b0000002e1bef12221b0057b69c2ac6ec9782c24a1f970f91f48f1f696c29c24c937a6fa5bfe315fa3be300001b000001a20e0511d81b000001a20e0c7090821b0000041d7898aa9c1b0000b12a6b1061711a002dc6c0"
+    },
+    "market_params": {
+      "role": "ADA market parameters (reference input)",
+      "ref": "344b090d588a045d4e903c6cafe3d6e18bc349faac5f07b442cc63db0c81702c#0",
+      "address": "addr_test1wzccrw3f4n7qavr67uvupxm4jd46uv0f9evgzpytlwz4zgq6sfuv9",
+      "lovelace": 5154760,
+      "assets": {
+        "0ec3d007cbc8140350f93b9f6e4529dbefd0d93d76ac428b72642d8c.": 1
+      },
+      "created_in_block": 4789723,
+      "datum_cbor": "9824820118321a055d4a80840a0800001a052f83c01a0007a120011a000493e00480581cc03bf2bd26327637e1910410a363cca092d89d5b6a89641602dcc2681a001e848084821b000000015be6dd9b1b0008e1bc9bf04000821b0000000514690d5f1b002386f26fc10000821b0000009ca4cecdb51b00071afd498d000082090a821a000186231a000186a08201010282011904e2820101820101820101820101581cda3d53de5778fabdb845dafe55c5ff50468ec75df5b8bf25c7733747581c3aa1d2eb1492021a3d06ff015938b5ba3f4b6f9149495d797df023a1581c24a7bb5e83b9b2abacf163b7875b8910dbeaf4f22440d25d31c20967d87981427980581cb1e4c9c9233fac6d3fd7eb7aa123dc36d67693c36fa4d56422f08712d8798142798081d87981581cab191e6a487e7c08fc529c7cde69778a224394276e0cd830c8c5805d1b000001739c8900381a19bfcc001a001b7740d87981581cae037acd967295c331fb5c080820eea50d242570ad80673844617347d87981581cae037acd967295c331fb5c080820eea50d242570ad80673844617347d87981821314d87a8082d87a81581cfa329c56db8bcd5591763312f0220da84d3435d4d752465c38894c1cd87a81581cafd309c2579096419c991fa469d33557d53e951883b24b3802400831581caefdf1fe40f0af4d3b84c0508d8c1ada37b284f7203006d4cb294543"
+    },
+    "action_script": {
+      "role": "action validator reference script",
+      "ref": "04dd9fbaa2305b1309843542821c580c724b4bec518d6d6280ec9ac6cdc6f0c9#0",
+      "address": "addr_test1wzm0p5hey0xgxkj63vy2cnnammuefcz2lxrkzcj99yamulgeytth9",
+      "lovelace": 34842040,
+      "assets": {},
+      "created_in_block": 4169948,
+      "datum_cbor": "d87980",
+      "reference_script": {
+        "hash": "da3d53de5778fabdb845dafe55c5ff50468ec75df5b8bf25c7733747",
+        "type": "plutusV2"
+      }
+    },
+    "qada_script": {
+      "role": "qADA minting policy reference script",
+      "ref": "dbb5d1c10ed2cd5a5105c1f50ce30dbdac7707060e3eb1be7034cdbce623ccc2#0",
+      "address": "addr_test1wzjwvgn5k3m9ekmrceh6c0azywhh3d8l5jq09tpm7cwp0es5ksry9",
+      "lovelace": 22575780,
+      "assets": {},
+      "created_in_block": 774487,
+      "reference_script": {
+        "hash": "50e015ec8204db83a4f57aa9ee40ce6ea157e3b7335a149fafe3f370",
+        "type": "plutusV2"
+      }
+    },
+    "supplier_utxo": {
+      "role": "public preview wallet UTxO offered to the builder",
+      "ref": "701cf5b5c2c7de6e8207593187e9fb3c73ddfb45840d3678c1b9df9232def1ec#3",
+      "address": "addr_test1qq4wzrda3rpszr9s8gelyufs368ke45xk7c6nfk54rc66qxejl3lnzgadpq8arwkxmeg4wkncfpv09uhs8lqc8ugjl3qrmvklh",
+      "lovelace": 2472887783,
+      "assets": {},
+      "created_in_block": 4827195
+    }
+  },
+  "live": {
+    "comment": "Refresh before a live invoke: every batch replaces the action and market state UTxOs and moves the exchange pair.",
+    "action_utxo": "any UTxO at the action address holding the action token af829f44\u20268786 (four exist)",
+    "market_state_utxo": "the UTxO holding the market state token b9a05fea\u20260fb6",
+    "exchange_lovelace": "market state datum field 9, element 0",
+    "exchange_qada": "market state datum field 9, element 1",
+    "supplier": "the signing wallet's address and payment key hash"
+  }
+}
