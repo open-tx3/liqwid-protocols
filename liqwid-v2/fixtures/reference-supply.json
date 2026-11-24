@@ -37,6 +37,7 @@
   },
   "expected": {
     "supplier_pkh": "2ae10dbd88c3010cb03a33f271308e8f6cd686b7b1a9a6d4a8f1ad00",
+    "supplier_address_hex": "002ae10dbd88c3010cb03a33f271308e8f6cd686b7b1a9a6d4a8f1ad00d997e3f9891d68407e8dd636f28abad3c242c7979781fe0c1f8897e2",
     "supply_lovelace": 100000000,
     "qada_minted": 4305236194
   },

@@ -14,7 +14,8 @@
     "asset_name": "",
     "decimals": 6,
     "script_ref": "dbb5d1c10ed2cd5a5105c1f50ce30dbdac7707060e3eb1be7034cdbce623ccc2#0",
-    "script_language": "PlutusV2"
+    "script_language": "PlutusV2",
+    "note": "Attached inline as a witness script (profile qada_script), copied from the reference script at script_ref; the checker hashes it to policy."
   },
   "action": {
     "validator_hash": "da3d53de5778fabdb845dafe55c5ff50468ec75df5b8bf25c7733747",
@@ -25,13 +26,16 @@
     "count": 4,
     "script_ref": "04dd9fbaa2305b1309843542821c580c724b4bec518d6d6280ec9ac6cdc6f0c9#0",
     "script_language": "PlutusV2",
-    "note": "The validator hash is field 20 of the market parameters datum. The API's registry.actionScriptHash (38d9a0c1…378e) names a different script whose address holds only 1 ADA dust UTxOs."
+    "note": "The validator hash is field 20 of the market parameters datum. The API's registry.actionScriptHash (38d9a0c1\u2026378e) names a different script whose address holds only 1 ADA dust UTxOs."
   },
   "market_state": {
     "address": "addr_test1wrdk050fs7r9537m9wxfnqzmjsxnmud5v8le6vjh6k5jhvchuyj76",
     "token_policy": "b9a05feafb9a147460f8c9e6f63de66d5f3d151ddcd93d0132e90fb6",
     "exchange_field": 9,
-    "exchange_order": ["underlying lovelace", "qADA supply"]
+    "exchange_order": [
+      "underlying lovelace",
+      "qADA supply"
+    ]
   },
   "market_params": {
     "ref": "344b090d588a045d4e903c6cafe3d6e18bc349faac5f07b442cc63db0c81702c#0",

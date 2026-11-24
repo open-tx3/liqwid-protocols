@@ -21,8 +21,8 @@ env {
     qada_policy: Bytes,
     /// UTxO carrying the action validator as a reference script.
     action_script_ref: UtxoRef,
-    /// UTxO carrying the qADA minting policy as a reference script.
-    qada_script_ref: UtxoRef,
+    /// qADA minting policy (PlutusV2), attached as a witness script.
+    qada_script: Bytes,
     /// Market parameters UTxO, read by both scripts.
     market_params_ref: UtxoRef,
 }
@@ -43,9 +43,11 @@ tx supply_ada(
     action_utxo: UtxoRef,
     /// Current market state UTxO (holds the market state token).
     market_state_utxo: UtxoRef,
-    /// Market state datum field 9, first element: underlying, in lovelace.
+    /// Market state datum field 9, element 0 (underlying lovelace), read from
+    /// `market_state_utxo`. Not checked by the build or by the qADA policy.
     exchange_lovelace: Int,
-    /// Market state datum field 9, second element: qADA supply, smallest unit.
+    /// Market state datum field 9, element 1 (qADA supply, smallest unit),
+    /// read from the same datum.
     exchange_qada: Int,
 ) {
     locals {
@@ -58,10 +60,6 @@ tx supply_ada(
 
     reference action_script {
         ref: action_script_ref,
-    }
-
-    reference qada_script {
-        ref: qada_script_ref,
     }
 
     reference market_params {
@@ -117,5 +115,12 @@ tx supply_ada(
 
     signers {
         supplier_pkh,
+    }
+
+    // Inline, so the script data hash carries the PlutusV2 language view; the
+    // resolver cannot read the language of a reference script.
+    cardano::plutus_witness {
+        version: 2,
+        script: qada_script,
     }
 }
