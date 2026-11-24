@@ -6,7 +6,7 @@
     "trix": "0.28.0",
     "note": "Unsigned; never signed or submitted. Redeemer budgets are trix placeholders. The qADA policy is an inline PlutusV2 witness, so the script data hash carries the PlutusV2 language view."
   },
-  "tir_sha256": "36977910a49eca880dc1e8b009840e1451106604154da2291718aac51d2b6dfa",
+  "tir_sha256": "270f0c03b13881b5ddbfcfda2c0180dbc38c2831d50b3692291f6f89b1b7143d",
   "preview_evaluation": {
     "ok": true,
     "budgets": [

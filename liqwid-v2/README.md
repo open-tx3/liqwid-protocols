@@ -139,8 +139,9 @@ when they are published.
 [`scripts/check-supply.py`](../scripts/check-supply.py), which:
 
 - fails when the built `supply_ada` TIR differs from the one the generated
-  fixture was resolved from (its sha256 is recorded with the fixture), so a
-  change to `main.tx3` needs a regenerated fixture;
+  fixture was resolved from (the sha256 of its decoded TIR, map entries
+  sorted, is recorded with the fixture), so a change to `main.tx3` needs a
+  regenerated fixture;
 - decodes the builder's and the generated supply against the snapshot,
   derives the qADA from the market state datum and asserts the effects above,
   including the exact outputs and the script data hash recomputed from the

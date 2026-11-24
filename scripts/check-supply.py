@@ -223,6 +223,24 @@ def supply_effects(tx, deployment, snapshot, expected):
             "change_lovelace": receipt["lovelace"]}
 
 
+def canonical(value):
+    """A JSON-ready form of decoded CBOR with map entries in sorted order."""
+    if isinstance(value, dict):
+        return {"map": sorted(([canonical(k), canonical(v)] for k, v in value.items()), key=json.dumps)}
+    if isinstance(value, (list, tuple)):
+        return [canonical(v) for v in value]
+    if isinstance(value, bytes):
+        return {"bytes": value.hex()}
+    if isinstance(value, Tag):
+        return {"tag": value.tag, "value": canonical(value.value)}
+    return value
+
+
+def tir_sha256(tir_hex):
+    # tx3c encodes some TIR maps in hash order, so hash a canonical decode.
+    return hashlib.sha256(json.dumps(canonical(cbor_hex(tir_hex))).encode()).hexdigest()
+
+
 def tii_path():
     manifest = dict(re.findall(r'^(scope|name|version) = "([^"]+)"', (PROTOCOL / "trix.toml").read_text(), re.M))
     return PROTOCOL / ".tx3/tii" / manifest["scope"] / manifest["name"] / manifest["version"] / "main.tii"
@@ -231,7 +249,7 @@ def tii_path():
 def check_interface(deployment, generated):
     tii = json.loads(tii_path().read_text())
     tx = tii["transactions"]["supply_ada"]
-    tir = hashlib.sha256(tx["tir"]["content"].encode()).hexdigest()
+    tir = tir_sha256(tx["tir"]["content"])
     assert tir == generated["tir_sha256"], (
         f"built TIR {tir} != {generated['tir_sha256']}: main.tx3 changed supply_ada, "
         "regenerate fixtures/generated-supply.json")
