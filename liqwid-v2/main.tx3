@@ -1,0 +1,126 @@
+// Liqwid V2 — supply ADA to the ADA lending market and receive qADA.
+//
+// A supply spends one of the market's action UTxOs, adds the ADA to it and
+// records the deposit in its datum, and mints qADA to the supplier at the
+// exchange rate the market state fixed at the last batch. A later batch moves
+// the action totals into the market state; that is out of scope.
+
+// --- Parties ---
+
+/// Wallet supplying ADA. Pays the deposit, fees and collateral, signs, and
+/// receives the qADA with its change.
+party Supplier;
+
+/// ADA market action validator address (bound by the profile).
+party ActionScript;
+
+// --- Environment (bound by the preview profile) ---
+
+env {
+    /// qADA minting policy id. The asset name is empty.
+    qada_policy: Bytes,
+    /// UTxO carrying the action validator as a reference script.
+    action_script_ref: UtxoRef,
+    /// qADA minting policy (PlutusV2), attached as a witness script.
+    qada_script: Bytes,
+    /// Market parameters UTxO, read by both scripts.
+    market_params_ref: UtxoRef,
+}
+
+// Both scripts take the unit redeemer Constr(0, []) for a supply.
+type Supply {}
+
+// --- Transactions ---
+
+/// Supply ADA to the ADA market and receive qADA at the market's current rate:
+/// qADA = floor(supply_lovelace × exchange_qada ÷ exchange_lovelace).
+tx supply_ada(
+    /// Supplier payment key hash (28 bytes), the required signer.
+    supplier_pkh: Bytes,
+    /// ADA supplied to the market, in lovelace.
+    supply_lovelace: Int,
+    /// Action UTxO to spend: any of the market's four, all equivalent.
+    action_utxo: UtxoRef,
+    /// Current market state UTxO (holds the market state token).
+    market_state_utxo: UtxoRef,
+    /// Market state datum field 9, element 0 (underlying lovelace), read from
+    /// `market_state_utxo`. Not checked by the build or by the qADA policy.
+    exchange_lovelace: Int,
+    /// Market state datum field 9, element 1 (qADA supply, smallest unit),
+    /// read from the same datum.
+    exchange_qada: Int,
+) {
+    locals {
+        qada_minted: supply_lovelace * exchange_qada / exchange_lovelace,
+    }
+
+    validity {
+        until_slot: tip_slot() + 300,
+    }
+
+    reference action_script {
+        ref: action_script_ref,
+    }
+
+    reference market_params {
+        ref: market_params_ref,
+    }
+
+    reference market_state {
+        ref: market_state_utxo,
+    }
+
+    // Datum: [[lovelace supplied, qADA minted, three fields a supply keeps],
+    // batch marker].
+    input action {
+        ref: action_utxo,
+        datum_is: Tuple<List<Int>, Int>,
+        redeemer: Supply {},
+    }
+
+    input* payment {
+        from: Supplier,
+        min_amount: Ada(supply_lovelace) + fees,
+    }
+
+    mint {
+        amount: AnyAsset(qada_policy, "", qada_minted),
+        redeemer: Supply {},
+    }
+
+    output action_successor {
+        to: ActionScript,
+        amount: action + Ada(supply_lovelace),
+        datum: [
+            [
+                action[0][0] + supply_lovelace,
+                action[0][1] + qada_minted,
+                action[0][2],
+                action[0][3],
+                action[0][4],
+            ],
+            action[1],
+        ],
+    }
+
+    output receipt {
+        to: Supplier,
+        amount: payment - Ada(supply_lovelace) - fees + AnyAsset(qada_policy, "", qada_minted),
+    }
+
+    collateral {
+        from: Supplier,
+        min_amount: Ada(5000000),
+    }
+
+    signers {
+        supplier_pkh,
+    }
+
+    // Inline, so the script data hash carries the PlutusV2 language view; the
+    // resolver cannot read the language of a reference script.
+    cardano::plutus_witness {
+        version: 2,
+        script: qada_script,
+    }
+}

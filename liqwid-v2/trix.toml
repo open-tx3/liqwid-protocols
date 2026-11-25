@@ -1,0 +1,11 @@
+[protocol]
+name = "liqwid-v2"
+scope = "open-tx3"
+version = "0.1.0"
+description = "Liqwid V2 — supply ADA to the ADA lending market and receive qADA"
+main = "main.tx3"
+readme = "README.md"
+repository = "https://github.com/open-tx3/liqwid-protocols"
+
+[ledger]
+family = "cardano"

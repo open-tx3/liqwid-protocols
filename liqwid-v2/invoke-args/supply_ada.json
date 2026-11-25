@@ -1,0 +1,9 @@
+{
+  "supplier": "addr_test1qq4wzrda3rpszr9s8gelyufs368ke45xk7c6nfk54rc66qxejl3lnzgadpq8arwkxmeg4wkncfpv09uhs8lqc8ugjl3qrmvklh",
+  "supplier_pkh": "2ae10dbd88c3010cb03a33f271308e8f6cd686b7b1a9a6d4a8f1ad00",
+  "supply_lovelace": 100000000,
+  "action_utxo": "67c414132e10bf29d93232cfd2c8038e9e2367ef46b2f66ec359f340301db284#3",
+  "market_state_utxo": "67c414132e10bf29d93232cfd2c8038e9e2367ef46b2f66ec359f340301db284#1",
+  "exchange_lovelace": 4524623833756,
+  "exchange_qada": 194795742978417
+}
