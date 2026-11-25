@@ -108,6 +108,7 @@ Each must be rejected for the named reason.
 | [`wrong-receipt-recipient`](../fixtures/negative/wrong-receipt-recipient.json) | qADA output paid to another key | `receipt-recipient` |
 | [`extra-output`](../fixtures/negative/extra-output.json) | a third output pays 50 ADA of the change to another key | `outputs` |
 | [`wrong-language-view`](../fixtures/negative/wrong-language-view.json) | script data hash over the PlutusV3 language view | `script-data-hash` |
+| [`extraneous-script`](../fixtures/negative/extraneous-script.json) | the qADA reference-script UTxO added as a reference input beside the inline witness (the ledger rejects it as an extraneous script witness; preview evaluation passes) | `scripts` |
 
 ## Expected differences
 
